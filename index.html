@@ -1,0 +1,204 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For KK 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Poppins',sans-serif;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(-45deg,#ff9a9e,#fad0c4,#ffdde1,#fbc2eb);
+background-size:400% 400%;
+animation:gradient 15s ease infinite;
+color:white;
+overflow:hidden;
+padding:20px;
+}
+
+@keyframes gradient{
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
+}
+
+.container{
+max-width:600px;
+width:100%;
+text-align:center;
+position:relative;
+}
+
+.slide{
+display:none;
+animation:fade 0.6s ease;
+}
+
+.slide.active{
+display:block;
+}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+h1{
+font-family:'Playfair Display',serif;
+font-size:2.2rem;
+margin-bottom:20px;
+}
+
+p{
+font-size:1.1rem;
+line-height:1.6;
+margin-bottom:20px;
+}
+
+button{
+padding:12px 25px;
+font-size:1rem;
+border:none;
+border-radius:30px;
+cursor:pointer;
+font-weight:600;
+margin:10px;
+transition:0.2s;
+}
+
+button:hover{
+transform:scale(1.08);
+}
+
+#yesBtn{
+background:white;
+color:#ff4f81;
+}
+
+#noBtn{
+background:#ff4f81;
+color:white;
+position:absolute;
+}
+
+.click-note{
+margin-top:10px;
+font-size:0.9rem;
+opacity:0.85;
+}
+
+.big-love{
+font-size:2.5rem;
+margin-bottom:20px;
+}
+
+.final-text{
+font-size:1.1rem;
+line-height:1.7;
+}
+
+.final-valentine{
+margin-top:25px;
+font-weight:600;
+font-size:1.2rem;
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- Slide 1 -->
+<div class="slide active">
+<h1>Hey KK 💖</h1>
+<p>You already know how I feel about you.</p>
+<p class="click-note">Click to continue 💌</p>
+<button onclick="nextSlide()">Continue</button>
+</div>
+
+<!-- Slide 2 -->
+<div class="slide">
+<h1>Something Honest...</h1>
+<p>
+I don’t want to complicate anything between us.  
+I just wanted to ask you something simple.
+</p>
+<p class="click-note">Click again…</p>
+<button onclick="nextSlide()">Continue</button>
+</div>
+
+<!-- Slide 3 -->
+<div class="slide" id="questionSlide">
+<h1>Will You Be My Valentine? 💘</h1>
+
+<button id="yesBtn">Yes 💖</button>
+<button id="noBtn">No</button>
+</div>
+
+<!-- Final Slide -->
+<div class="slide">
+<h1 class="big-love">I Love You ❤️</h1>
+
+<p class="final-text">
+You’re everything I can dream of.  
+You’re quite literally my jigar da tukda.  
+Stay the way you are please, my world wouldn’t be the same without you.  
+I don’t wanna get too romantic but you’re my "this side of paradise" ❤️
+</p>
+
+<p class="final-valentine">
+Happy Valentine’s Day, sweetheart ❤️
+</p>
+
+</div>
+
+</div>
+
+<script>
+let current = 0;
+const slides = document.querySelectorAll(".slide");
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+
+function nextSlide(){
+slides[current].classList.remove("active");
+current++;
+if(current < slides.length){
+slides[current].classList.add("active");
+}
+}
+
+/* YES goes to final slide */
+yesBtn.addEventListener("click", () => {
+nextSlide();
+});
+
+/* Flying NO button (stays inside container) */
+function moveNo(){
+const container = document.querySelector(".container");
+const rect = container.getBoundingClientRect();
+
+const maxX = rect.width - noBtn.offsetWidth;
+const maxY = rect.height - noBtn.offsetHeight;
+
+const x = Math.random() * maxX;
+const y = Math.random() * maxY;
+
+noBtn.style.left = x + "px";
+noBtn.style.top = y + "px";
+}
+
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("click", moveNo);
+</script>
+
+</body>
+</html>
